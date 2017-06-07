@@ -10,6 +10,10 @@ exports.seed = function(knex, Promise) {
           test_code: 'yes'
         },
         {
+          question_id: 1,
+          test_code: 'no'
+        },
+        {
           question_id: 2,
           test_code: 'yes'
         },

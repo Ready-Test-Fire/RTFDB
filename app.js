@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express()
 var http = require('http');
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 
 app.use(cors());
@@ -13,8 +13,8 @@ app.use(bodyParser.json());
 // app.use(express.static(path.join(__dirname, '/../', 'node_modules')));
 
 app.use('/api/questions', require('./routes/questions'));
-app.use('/api/tests', require('./routes/tests'));
-// app.use('/api', require('./routes/users'));
+app.use('/api/users', require('./routes/users'));
+
 
 // app.use('*', function(req, res, next) {
 //   res.sendFile('index.html', {root: path.join(__dirname, 'public')});

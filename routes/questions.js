@@ -4,24 +4,13 @@ const knex = require('../db')
 
 
 
-router.get('/', (req, res, next) => {
-  knex('questions')
-    .then(questions => {
-    //   return knex('tests')
-    //     .whereIn('question_id', question.map(p => p.id))
-    //     .then((tests) => {
-    //       const testsByQuestionId = tests.reduce((result, test) => {
-    //         result[test.question_id] = result[test.question_id] || []
-    //         result[test.question_id].push(test)
-    //         return result
-    //       }, {})
-    //       questions.forEach(question => {
-    //         question.tests = commentsByPostId[question.id] || []
-    //       })
-          res.json(questions);
-        }, error => console.log(error));
-//     })
-//     .catch(err => next(err))
+router.get('/:id', (req, res, next) => {
+  knex('questions').where('id', req.params.id).then(qdata => {
+    knex('tests').where('question_id', req.params.id).then(tdata => {
+      data = [qdata, tdata]
+      res.json(data);
+    })
+  })
 });
 
 
@@ -34,14 +23,7 @@ router.post('/', validate, (req, res, next) => {
     .catch(err => next(err))
 })
 
-// GET /api/questions/:id/
-router.get('/:id', (req, res, next) => {
-  knex('questions')
-    .where({id: req.params.id})
-    .first()
-    .then(question => res.json(question))
-    .catch(err => next(err))
-})
+
 
 
 router.patch('/:id', validate, (req, res, next) => {
