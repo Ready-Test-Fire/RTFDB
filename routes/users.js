@@ -25,10 +25,11 @@ router.post('/', validate, (req, res, next) => {
       username: info.username,
       email: info.email,
       password: hash,
-  }).then(()=>{
-    next();
+    }).then(()=>{
+      
+      })
   })
-
+})
 
 // GET /api/users/:id/
 router.get('/:id', (req, res, next) => {
@@ -70,7 +71,7 @@ function validate(req, res, next) {
     }
   })
   if (errors.length) return res.status(422).json({errors})
-  next()
+
 }
 
 module.exports = router;
