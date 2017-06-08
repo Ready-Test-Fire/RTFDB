@@ -6,7 +6,7 @@ exports.seed = function(knex, Promise) {
       // Inserts seed entries
       return knex('questions').insert([
         {
-          prompt: 'Write a function named test that returns the string "This Works!".'
+          prompt: 'Write a function named "test" that returns the string "This Works!".'
 
         },
         {
