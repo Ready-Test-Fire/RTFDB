@@ -5,11 +5,8 @@ const knex = require('../db')
 
 
 router.get('/:id', (req, res, next) => {
-  knex('questions').where('id', req.params.id).then(qdata => {
-    knex('tests').where('question_id', req.params.id).then(tdata => {
-      data = [qdata, tdata]
-      res.json(data);
-    })
+  knex('questions').where('id', req.params.id).then(data => {
+    res.json(data);
   })
 });
 
